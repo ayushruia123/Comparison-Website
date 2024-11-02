@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar with Hamburger Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Navbar Styles */
+    body {
+    background-image: url('assets/background.webp'); /* Background image for the entire page */
+    background-size: cover; /* Cover the entire body */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    color: white; /* Text color for content */
+    margin: 0; /* Remove default margin */
+    font-family: 'Playfair Display', serif; /* Use Playfair Display font */
+}
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: #ffffff;
+      color: #000000;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .navbar h1 {
+      font-size: 24px;
+      color: #000;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #000;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ff9800;
+    }
+
+    /* Hamburger Icon */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: #000;
+    }
+
+    /* Right-side menu for mobile */
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%;
+      width: 50%;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 20px;
+      padding-left: 20px;
+      gap: 15px;
+      transition: right 0.4s ease;
+      z-index: 1000;
+    }
+
+    .nav-menu.open {
+      right: 0;
+    }
+
+    /* Close Icon Inside the Menu */
+    .nav-menu .close-icon {
+      align-self: flex-end;
+      font-size: 24px;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .nav-menu a {
+      color: #000000;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 0;
+      transition: color 0.3s;
+      width: 100%;
+    }
+
+    .nav-menu a:hover {
+      color: #ff9800;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <h1>Navbar Title</h1>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#project-configuration">Project Configuration</a>
+      <a href="#plans">Plans</a>
+    </div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <nav class="nav-menu" id="navMenu">
+      <div class="close-icon" id="closeIcon">&times;</div>
+      <a href="#overview">Overview</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#project-configuration">Project Configuration</a>
+      <a href="#plans">Plans</a>
+    </nav>
+</header>
+
+
+
+<style>
+    /* Smooth scrolling for all anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile Menu Styling */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background-color: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.nav-menu.active {
+    transform: translateX(0);
+}
+
+/* Close Icon Positioning */
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Show hamburger icon on smaller screens */
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .hamburger {
+        display: block;
+    }
+}
+</style>
+
+<script>
+    // JavaScript to toggle the menu
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+const closeIcon = document.getElementById("closeIcon");
+
+hamburger.addEventListener("click", () => {
+    navMenu.classList.add("active");
+});
+
+closeIcon.addEventListener("click", () => {
+    navMenu.classList.remove("active");
+});
+
+</script>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const closeIcon = document.getElementById('closeIcon');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+
+    closeIcon.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+    });
+  </script>
+
+  <div class="hero-container">
+  <div class="hero-slide">
+    <img src="https://dreamworldcity.co.in/assets/dwc/5.jpg" alt="Hero Image 1">
+    <img src="https://dreamworldcity.co.in/assets/dwc/3.jpg" alt="Hero Image 2">
+    <img src="https://dreamworldcity.co.in/assets/dwc/dubai.jpg" alt="Hero Image 3">
+    <div class="hero-caption">Choose Between The Most Global Estates</div>
+  </div>
+</div>
+
+<style>
+  /* Hero Container Setup */
+  .hero-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+  }
+
+  /* Hero Image Styling */
+  .hero-slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 5px solid gold;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  /* Animation for image cycling */
+  .hero-slide img:nth-child(1) { animation: slideShow 12s infinite 0s; }
+  .hero-slide img:nth-child(2) { animation: slideShow 12s infinite 4s; }
+  .hero-slide img:nth-child(3) { animation: slideShow 12s infinite 8s; }
+
+  /* Keyframes for Fade-in/Fade-out Effect */
+  @keyframes slideShow {
+    0% { opacity: 1; }
+    33.33% { opacity: 1; }
+    66.66% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  /* Premium Caption Styling */
+  .hero-caption {
+    position: absolute;
+    bottom: 90px;
+    left: 30px;
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    padding: 5px 10px;
+    border-left: 3px solid gold;
+  }
+
+  .overview {
+    color: black;
+  }
+
+  .sub-heading {
+    color: goldenrod;
+    text-align: center;
+  } 
+
+  .heading {
+    color: saddlebrown;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+
+</style>
+</section>
+
+<section id="overview">
+<div class="heading"><h2>Overview</h2></div>
+</section>
+<BR>
+<BR>
+<div class="sub-heading"><h2>Dream World City</h2></div>
+
+<!-- Content Section -->
+<section class="content-section">
+  <div class="image-content">
+    <img src="https://dreamworldcity.co.in/assets/dwc/5.jpg" alt="Building Image">
+  </div>
+  <div class="text-content">
+    <p class="main-heading">Makes yourself at home and enjoy a unique experience</p>
+    <p class="description">
+      DTC Sojon, a lifestyle residential project by DTC Group, is one of the largest projects in Joka and Behala area. 
+      It’s just 3 mins from the newly opened Joka Metro with great connectivity to the entire city. The project has a 
+      90,000 sq.ft green podium with outdoor movie and sports screen, box cricket, pet zone, fishing pond, badminton and 
+      basketball court among many other amenities. It has 2 and 3BHK configurations with sizes ranging from 880-960 sq.ft 
+      for 2BHK and 3BHK in 1130, 1250 and 1460 sq.ft.
+    </p>
+  </div>
+</section>
+
+<style>
+  /* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.content-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: ;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.image-content img {
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+.text-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.text-content h2 {
+  font-size: 2rem;
+  color: #4a3f35;
+}
+
+.main-heading {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.description {
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .content-section {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .text-content, .image-content {
+    padding: 10px;
+  }
+
+  .main-heading {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-section {
+    padding: 15px;
+  }
+
+  .main-heading {
+    font-size: 1.3rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.card-container {
+  width: 100%;
+  padding: 0 16px; /* Adds padding to prevent content from touching the edges */
+}
+
+.card-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  width: 100%; /* Ensure the content doesn't exceed viewport width */
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+
+</style>
+<br>
+<br>
+<br>
+<div class="sub-heading"><h2>DTC Sojon</h2></div>
+
+
+<!-- Content Section -->
+<section class="content-section">
+  <div class="text-content">
+    <p class="main-heading"><b>Makes yourself at home and enjoy a unique experience</b></p>
+    <p class="description">
+      DTC Sojon, a lifestyle residential project by DTC Group, is one of the largest projects in Joka and Behala area. 
+      It’s just 3 mins from the newly opened Joka Metro with great connectivity to the entire city. The project has a 
+      90,000 sq.ft green podium with outdoor movie and sports screen, box cricket, pet zone, fishing pond, badminton and 
+      basketball court among many other amenities. It has 2 and 3BHK configurations with sizes ranging from 880-960 sq.ft 
+      for 2BHK and 3BHK in 1130, 1250 and 1460 sq.ft.
+    </p>
+  </div>
+  <div class="image-content">
+    <img src="https://dreamworldcity.co.in/assets/dwc/5.jpg" alt="Building Image">
+  </div>
+</section>
+
+<style>
+  /* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: ;
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: ;
+}
+
+.navbar .nav-links li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.contact-btn .phone-link {
+  background-color: #4a3f35;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 25px;
+}
+
+.content-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: ;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.text-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.text-content h2 {
+  font-size: 2rem;
+  color: saddlebrown;
+  text-align: center;
+}
+
+.main-heading {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.description {
+  line-height: 1.6;
+  color: #555;
+}
+
+.image-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.image-content img {
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .content-section {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .text-content, .image-content {
+    padding: 10px;
+  }
+
+  .main-heading {
+    font-size: 1.5rem;
+  }
+
+  .navbar .nav-links {
+    display: none; /* Hide navbar links on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .content-section {
+    padding: 15px;
+  }
+
+  .main-heading {
+    font-size: 1.3rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+}
+
+</style>
+<br>
+<br>
+<br>
+<section id="highlights">
+<h1 class="heading"><center><b>Highlights</b></center></h1>
+</section>
+<br>
+<br>
+<br>
+<div class="highlights-section">
+    <h3 class="section-title">Highlights</h3>
+    <h1 class="main-title">Exceptional Properties. Exceptional Clients.</h1>
+    
+    <div class="content">
+        <div class="image-content">
+            <img src="https://dreamworldcity.co.in/assets/dwc/5.jpg" alt="Building Image">
+        </div>
+        <div class="text-content">
+            <ul class="highlights-list">
+                <li>Largest Gated Residential Complex with Amenities</li>
+                <li>Efficient Space Planning, Zero Wastage</li>
+                <li>Plethora of Amenities, 40,000+ sq. ft. Clubhouse</li>
+                <li>Aesthetic 3-Side Open Units, Natural Light</li>
+                <li>Rooftop Infinity Pool, Stunning Design</li>
+                <li>Enormous Podium, 90,000 sq. ft. Amenities</li>
+                <li>Spacious, 11 Towers on 10 Acres</li>
+            </ul>
+            <button class="view-more">View More</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<div class="highlights-section">
+  <h3 class="section-title">Highlights</h3>
+  <h1 class="main-title">Exceptional Properties. Exceptional Clients.</h1>
+
+  <div class="content">
+    <div class="text-content">
+      <ul class="highlights-list">
+        <li>6 Towers, G+9 Stories</li>
+        <li>630 sq.ft - 930 sq.ft SBU</li>
+        <li>Ready To Move In</li>
+        <li>27.5 Lacs Onwards</li>
+        <li>Off national highway</li>
+        <li>Away from air pollution</li>
+        <li>Peaceful environment</li>
+        <li>surrounded with greenery</li>
+      </ul>
+      <button class="view-more">View More</button>
+    </div>
+    <div class="image-content">
+      <img src="https://dreamworldcity.co.in/assets/dwc/5.jpg" alt="Building Image">
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.highlights-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #fefefe;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #4a3f35;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.text-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.highlights-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.highlights-list li {
+  margin-bottom: 10px;
+}
+
+.view-more {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4a3f35;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-more:hover {
+  background-color: #333;
+}
+
+.image-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.image-content img {
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .text-content, .image-content {
+    padding: 10px;
+  }
+}
+
+</style>
+<style>
+  .highlights-section {
+    text-align: center;
+    padding: 40px;
+    background-color: white;
+}
+
+.highlights-section .section-title {
+    font-size: 1.2em;
+    color: #b19777;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.highlights-section .main-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.highlights-section .content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.highlights-section .image-content img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.highlights-section .text-content {
+    max-width: 500px;
+}
+
+.highlights-section .highlights-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    font-size: 1em;
+    color: #333;
+}
+
+.highlights-section .highlights-list li {
+    margin: 10px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.highlights-section .highlights-list li:before {
+    content: "•";
+    color: #b19777;
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.highlights-section .view-more {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #b19777;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.highlights-section .view-more:hover {
+    background-color: #8b6d5d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .highlights-section .content {
+        flex-direction: column;
+    }
+}
+
+.amenities {
+  text-align: center;
+  /* padding: 20px; */
+}
+
+.amenities h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 38px;
+  color: #000000;
+  margin-bottom: 10px;
+  text-align: left;
+  padding: 20px 0 0 5%;
+}
+
+.amenities h1::after {
+  content: "";
+  display: inline-block;
+  margin-left: 10px;
+  /* Adjust this value to control the space between the text and the line */
+  height: 3px;
+  /* Adjust this value to change the thickness of the line */
+  width: 50%;
+  /* Adjust this value to change the length of the line */
+  background-color: black;
+  /* Adjust this value to change the color of the line */
+  vertical-align: middle;
+}
+
+.amenities-description {
+  /* width: 26.5%; */
+  font-family: "Jost", sans-serif;
+  padding: 0 3.5%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.amenities-description-mobile {
+  display: none;
+}
+
+.amenities-description p {
+  padding: 0 2.5% 30px 1.5%;
+  font-size: 20px;
+  text-align: left;
+}
+
+.amenities .download-brochure {
+  margin: 30px auto 0 auto;
+  font-family: "Jost", sans-serif;
+}
+
+.amenities-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.amenities-list {
+  width: 20%;
+  margin-right: 20px;
+  text-align: left;
+}
+
+.amenities-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.amenities-list li {
+  cursor: pointer;
+  font-family: "Jost", sans-serif;
+  font-size: 18px;
+  padding: 10px 0;
+  color: #000000;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.amenities-list span {
+  margin-right: 10px;
+}
+
+.amenities-list li.active {
+  background-color: #215B43;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+  font-family: "Jost", sans-serif;
+}
+
+.carousel {
+  position: relative;
+  width: 60%;
+  overflow: hidden;
+  margin: auto 0;
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.amenities-name {
+  display: none;
+}
+
+.amenities-desktop-image {
+  display: block;
+}
+
+.amenities-mobile-image {
+  display: none;
+}
+
+.carousel-item img {
+  width: 90%;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #004221;
+  color: white;
+  border: 3px solid white;
+  /* padding: 20px; */
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: larger;
+  font-weight: bold;
+  z-index: 10;
+  transition: all 0.1s ease-in-out;
+}
+
+.carousel-control:hover {
+  background-color: #02753c;
+}
+
+.carousel-control.prev {
+  left: 0px;
+}
+
+.carousel-control.next {
+  right: 0px;
+}
+
+
+</style>
+
+
+<section class="amenities" id="amenities">
+        <h1>Amenities</h1>
+      </section>
+        <div class="amenities-description">
+            <p class="amenities-description-desktop">Discover an unparalleled lifestyle at Dream World City in Joka,
+                where every amenity elevates your living experience. Enjoy Club Hollywood, stay fit at the health club
+                with a gym, steam room, and yoga room, or relax in the air-conditioned mini movie theatre and library
+                lounge. Dive into the swimming pool, or enjoy a barbecue at the barbecue corner. Engage in various
+                sports with cricket, football, basketball, badminton, and volleyball courts, as well as an indoor games
+                room. Children can have fun in the dedicated play area. For daily needs, we have a daily convenience
+                store, medical store, and ATM center. Take advantage of the multipurpose court, utility and support
+                services, and a robust security management system with generator backup. Some secrets of this luxurious
+                haven are best experienced firsthand.</p>
+            <p class="amenities-description-mobile">
+                Experience luxury at Dream World City, Joka, with world-class amenities. Enjoy Club Hollywood, a gym, a
+                steam room, a yoga room, an air-conditioned mini movie theatre, a library lounge, a swimming pool, a
+                barbecue corner, an indoor games room, a multipurpose court, and a children’s play area. For your daily
+                needs, there is a daily convenience store, a medical store, an ATM, utility and support services, a
+                security management system, and generator backup.
+                Uncover more secrets firsthand.</p>
+        </div>
+        </section>
+        
+         
+         <h1><center><b>Dream World City</b></center></h1>
+
+<div class="amenities-grid">
+  <div class="amenity-card swimming">
+    <i class="fas fa-swimming-pool"></i>
+    <h3>Swimming Pool</h3>
+    <p>Dive into a refreshing escape with our well-maintained swimming pool.</p>
+  </div>
+  <div class="amenity-card gym">
+    <i class="fas fa-dumbbell"></i>
+    <h3>Gymnasium</h3>
+    <p>Stay on top of your fitness goals with our fully-equipped gym.</p>
+  </div>
+  <div class="amenity-card theatre">
+    <i class="fas fa-film"></i>
+    <h3>Mini Theatre</h3>
+    <p>Enjoy movie nights with family and friends in our private mini theatre.</p>
+  </div>
+  <div class="amenity-card games">
+    <i class="fas fa-gamepad"></i>
+    <h3>Indoor Games</h3>
+    <p>Have fun indoors with games for all ages, from board games to table tennis.</p>
+  </div>
+  <div class="amenity-card park">
+    <i class="fas fa-child"></i>
+    <h3>Children Park</h3>
+    <p>A safe and fun-filled park for kids to play and explore.</p>
+  </div>
+  <div class="amenity-card banquet">
+    <i class="fas fa-chair"></i>
+    <h3>AC Banquet</h3>
+    <p>Host elegant events and gatherings in our air-conditioned banquet hall.</p>
+  </div>
+  <div class="amenity-card senior">
+    <i class="fas fa-users"></i>
+    <h3>Senior Citizen Corner</h3>
+    <p>A serene spot for seniors to relax and socialize.</p>
+  </div>
+  <div class="amenity-card cricket">
+    <i class="fas fa-baseball-ball"></i>
+    <h3>Cricket Field</h3>
+    <p>Take part in friendly matches on our spacious cricket field.</p>
+  </div>
+  <div class="amenity-card store">
+    <i class="fas fa-store"></i>
+    <h3>Convenience Store</h3>
+    <p>Find daily essentials right within your community at our convenience store.</p>
+  </div>
+  <div class="amenity-card jacuzzi">
+    <i class="fas fa-hot-tub"></i>
+    <h3>Jacuzzi</h3>
+    <p>Unwind in our soothing jacuzzi for the ultimate relaxation.</p>
+  </div>
+  <div class="amenity-card bbq">
+    <i class="fas fa-fire-alt"></i>
+    <h3>Barbecue Corner</h3>
+    <p>Enjoy grilling and outdoor gatherings at our barbecue corner.</p>
+  </div>
+  <div class="amenity-card track">
+    <i class="fas fa-running"></i>
+    <h3>Jogging & Cycling Track</h3>
+    <p>Stay active with our scenic track for jogging and cycling.</p>
+  </div>
+  <div class="amenity-card yoga">
+    <i class="fas fa-spa"></i>
+    <h3>Yoga</h3>
+    <p>Find peace and wellness in our tranquil yoga space.</p>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<section class="amenities" id="amenities"></section>
+  <h1><center><b>DTC Sojon</b></center></h1>
+        <div class="amenities-description">
+            <p class="amenities-description-desktop">
+                Welcome to DTC Sojon, where luxury meets tranquility. Nestled in a serene environment, this exceptional community is designed to cater to your every need. Each element is thoughtfully curated to offer you an unparalleled living experience, creating a harmonious blend of comfort and elegance.
+
+  Step into a world of sophistication and style. At DTC Sojon, we believe that your home should be a reflection of your aspirations. With meticulously designed spaces, you’ll find that every corner of our community exudes an air of exclusivity and charm.</p>
+            <p class="amenities-description-mobile">
+                Experience luxury at Dream World City, Joka, with world-class amenities. Enjoy Club Hollywood, a gym, a
+                steam room, a yoga room, an air-conditioned mini movie theatre, a library lounge, a swimming pool, a
+                barbecue corner, an indoor games room, a multipurpose court, and a children’s play area. For your daily
+                needs, there is a daily convenience store, a medical store, an ATM, utility and support services, a
+                security management system, and generator backup.
+                Uncover more secrets firsthand.</p>
+        </div>
+        </section>
+
+         
+
+<div class="amenities-grid">
+  <div class="amenity-card swimming">
+    <i class="fas fa-swimming-pool"></i>
+    <h3>Swimming Pool</h3>
+    <p>Dive into a refreshing escape with our well-maintained swimming pool.</p>
+  </div>
+  <div class="amenity-card gym">
+    <i class="fas fa-dumbbell"></i>
+    <h3>Gymnasium</h3>
+    <p>Stay on top of your fitness goals with our fully-equipped gym.</p>
+  </div>
+  <div class="amenity-card park">
+    <i class="fas fa-child"></i>
+    <h3>Children Park</h3>
+    <p>A safe and fun-filled park for kids to play and explore.</p>
+  </div>
+  <div class="amenity-card senior">
+    <i class="fas fa-users"></i>
+    <h3>Parking</h3>
+    <p>Convenient parking facilities for residents and guests.</p>
+  </div>
+  <div class="amenity-card store">
+    <i class="fas fa-store"></i>
+    <h3>Multipurpose Hall</h3>
+    <p>Host events in our versatile multi-purpose hall.</p>
+  </div>
+  <div class="amenity-card jacuzzi">
+    <i class="fas fa-hot-tub"></i>
+    <h3>High Speed Wifi</h3>
+    <p>Seamless connectivity with high-speed Wi-Fi.</p>
+  </div>
+  <div class="amenity-card bbq">
+    <i class="fas fa-fire-alt"></i>
+    <h3>24X7 Security</h3>
+    <p>Experience peace of mind with 24x7 security.</p>
+  </div>
+  <div class="amenity-card track">
+    <i class="fas fa-running"></i>
+    <h3>Jogging & Cycling Track</h3>
+    <p>Scenic track for jogging and cycling.</p>
+  </div>
+</div>
+
+<style>
+/* Universal reset for grid styling */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main grid styling */
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card styling */
+.amenity-card {
+    background-color: #f9f9f9;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.amenity-card:hover {
+    transform: translateY(-5px);
+    border-color: #28a745; /* Green border on hover */
+}
+
+.amenity-card i {
+    font-size: 30px;
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+.amenity-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.amenity-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .amenities-description {
+      display: none;
+    }
+}
+</style>
+
+<br>
+<section id="project-configuration">
+<h1 class="heading"><center><b>Project Configuration</b></center></h1>
+</section>
+<br>
+<br>
+<h2 class="sub-heading"><center><b>Dream World City</b></center></h2>
+<br>
+<br>
+<div class="card-container">
+  <!-- Content for Tab 1 -->
+  <div class="card-content">
+    <div class="card">
+      <div class="card-header">3 BHK</div>
+      <div class="card-price">₹ 2.6 Cr* Onwards</div>
+      <div class="card-size">Size: 1507 - 1518 Sq.Ft.</div>
+      <button class="card-button">Know More</button>
+    </div>
+    <div class="card">
+      <div class="card-header">3 BHK</div>
+      <div class="card-price">₹ 3.25 Cr* Onwards</div>
+      <div class="card-size">Size: 1827 - 1911 Sq.Ft.</div>
+      <button class="card-button">Know More</button>
+    </div>
+    <div class="card">
+      <div class="card-header">3 BHK</div>
+      <div class="card-price">₹ 3.58 - 4 Cr* Onwards</div>
+      <div class="card-size">Size: 1997 - 2102 Sq.Ft.</div>
+      <button class="card-button">Know More</button>
+    </div>
+  </div>
+<br>
+<br>
+  <h2 class="sub-heading"><center><b>Dream World City</b></center></h2>
+<br>
+<br>
+  <!-- Content for Tab 2 -->
+  <div class="card-content">
+    <div class="card">
+      <div class="card-header">4 BHK</div>
+      <div class="card-price">₹ 4.29 Cr* Onwards</div>
+      <div class="card-size">Size: 2456 - 2517 Sq.Ft.</div>
+      <button class="card-button">Know More</button>
+    </div>
+    <div class="card">
+      <div class="card-header">4 BHK</div>
+      <div class="card-price">₹ 5 Cr* Onwards</div>
+      <div class="card-size">Size: 2855 - 2933 Sq.Ft.</div>
+      <button class="card-button">Know More</button>
+    </div>
+    <div class="card">
+      <div class="card-header">4 BHK</div>
+      <div class="card-price">₹ 5.5 Cr* Onwards</div>
+      <div class="card-size">Size: 3000 - 3200 Sq.Ft.</div>
+      <button class="card-button">Know More</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Card Container */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  background-color: ;
+  padding: 40px;
+}
+
+/* Card Content Styling */
+.card-content {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Default Layout: 3 Columns on Larger Screens */
+@media (min-width: 1024px) {
+  .card-content {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Mobile View: Stack Cards Vertically */
+@media (max-width: 767px) {
+  .card-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual Card Styling */
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Header */
+.card-header {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+/* Card Price */
+.card-price {
+  font-size: 1.3rem;
+  color: #004aad;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+/* Card Size */
+.card-size {
+  font-size: 1rem;
+  color: #777777;
+  margin-bottom: 24px;
+}
+
+/* Card Button */
+.card-button {
+  background-color: #8b5e3c; /* Rich brown */
+  color: #ffffff;
+  font-weight: 700;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #6f4b2e; /* Darker brown shade */
+  transform: translateY(-3px);
+}
+
+.Heading {
+  font-family: Playfair Display;
+  font-size: 2.5rem;
+}
+
+.HEading {
+  font-family: Playfair Display;
+  font-size: 2rem;
+}
+
+.HEAding {
+  font-family: Playfair Display;
+  font-size: 1.5rem;
+}
+
+.HEADing {
+  font-family: Playfair Display;
+  font-size: 1.5rem;
+}
+
+    .listing {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 30%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease;
+      color: #000;
+    }
+
+    .listing:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .listing img {
+      width: 100%;
+      height: auto;
+    }
+
+    .details {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .details h3 {
+      margin: 10px 0;
+      font-size: 1.2rem;
+    }
+
+    .location, .info, .price {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .listing {
+        width: 100%;
+      }
+    }
+
+    .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    background-color: ;
+}
+
+.listing {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 30%; /* Each card will take 30% width */
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.listing img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.details {
+    padding: 15px;
+}
+
+.details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.details .location,
+.details .info,
+.details .price {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    color: #555;
+}
+
+.listing:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .listing {
+        width: 100%; /* Full width for mobile view */
+    }
+}
+
+.heading {
+  color: black;
+}
+
+    /* Centering the button */
+body {
+   
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #f4;
+}
+
+.gallery-item {
+    flex: 1 1 30%; /* Adjusts to 30% width for each item */
+    margin: 10px;  /* Spacing between items */
+    text-align: center; /* Centering text under the images */
+    background-color: white;
+    border-radius: 15px;
+}
+
+.gallery-item img {
+    max-width: 100%; /* Makes images responsive */
+    height: auto;    /* Maintains aspect ratio */
+}
+
+.details {
+    margin-top: 10px; /* Space between the image and details */
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: ;
+}
+
+.gallery-item {
+    flex: 1 1 30%; /* Adjusts to 30% width for each item */
+    margin: 50px;  /* Spacing between items */
+    text-align: center; /* Centering text under the images */
+    overflow: show; /* Ensures no overflow from the container */
+}
+
+.gallery-item img {
+    width: 70%; /* Make the image take the full width of the container */
+    height: 200px; /* Set a fixed height for uniformity */
+    object-fit:; /* Ensures the image covers the area without distortion */
+}
+
+.details {
+    margin-top: 10px; /* Space between the image and details */
+}
+
+
+</style>
+
+
+<div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" onclick="showTab(1)">Tab 1</button>
+            <button class="tab" onclick="showTab(2)">Tab 2</button>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab-1">
+                <img src="image1.jpg" alt="Image 1">
+                <img src="image2.jpg" alt="Image 2">
+                <img src="image3.jpg" alt="Image 3">
+            </div>
+            <div class="tab-pane" id="tab-2">
+                <img src="image4.jpg" alt="Image 4">
+                <img src="image5.jpg" alt="Image 5">
+                <img src="image6.jpg" alt="Image 6">
+            </div>
+        </div>
+    </div>
+<style>
+        /* Basic styling for the container and tabs */
+        .tabs-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #ccc;
+            border: none;
+            margin: 0 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            outline: none;
+        }
+
+        .tab.active {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .tab-content {
+            position: relative;
+        }
+
+        .tab-pane {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab-pane.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .tab-pane img {
+            max-width: 100px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .tab-pane img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+    function showTab(tabIndex) {
+            const tabs = document.querySelectorAll('.tab');
+            const panes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach((tab, index) => {
+                if (index === tabIndex - 1) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            panes.forEach((pane, index) => {
+                if (index === tabIndex - 1) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+        }
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="tab-interface">
+        <div class="tab-buttons">
+            <button class="tab-button active-tab" onclick="switchTab(1)">Tab 1</button>
+            <button class="tab-button" onclick="switchTab(2)">Tab 2</button>
+        </div>
+        <div class="tab-display">
+            <div class="tab-section active-section" id="section-1">
+                <img src="image1.jpg" alt="Image 1">
+                <img src="image2.jpg" alt="Image 2">
+                <img src="image3.jpg" alt="Image 3">
+            </div>
+            <div class="tab-section" id="section-2">
+                <img src="image4.jpg" alt="Image 4">
+                <img src="image5.jpg" alt="Image 5">
+                <img src="image6.jpg" alt="Image 6">
+            </div>
+        </div>
+    </div>
+<style>
+        /* Basic styling for the container and tabs */
+        .tab-interface {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #ccc;
+            border: none;
+            margin: 0 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            outline: none;
+        }
+
+        .tab-button.active-tab {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .tab-display {
+            position: relative;
+        }
+
+        .tab-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab-section.active-section {
+            display: flex;
+            opacity: 1;
+        }
+
+        .tab-section img {
+            max-width: 100px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .tab-section img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+function switchTab(tabIndex) {
+            const buttons = document.querySelectorAll('.tab-button');
+            const sections = document.querySelectorAll('.tab-section');
+
+            buttons.forEach((button, index) => {
+                if (index === tabIndex - 1) {
+                    button.classList.add('active-tab');
+                } else {
+                    button.classList.remove('active-tab');
+                }
+            });
+
+            sections.forEach((section, index) => {
+                if (index === tabIndex - 1) {
+                    section.classList.add('active-section');
+                } else {
+                    section.classList.remove('active-section');
+                }
+            });
+        }
+    </script>
+<br>
+<br>
+<br>
+<br>
+ <!-- Featured Properties Section -->
+ <h1 class="heading"><center><b>Plans</b></center></h1>
+ <br>
+ <br>
+ <h1 class="heading"><center><b>Dream World City</b></center></h1>
+ <br>
+ <br>
+ <div class="container">
+    <!-- Row 1 -->
+    <div class="listing">
+        <img src="images/dk1.jpg" alt="Botanica">
+        <div class="details">
+            <h3>Botanica</h3>
+            <p class="location">Sonarpur, South Kolkata</p>
+            <p class="info">3, 4 BHK | 11 Acres | 55% Complete | Under Construction</p>
+            <p class="price">₹1.50 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/dk2.jpg" alt="Aashirvaad">
+        <div class="details">
+            <h3>Aashirvaad</h3>
+            <p class="location">Rajarhat, Kolkata</p>
+            <p class="info">2, 3 BHK | 8 Acres | 70% Complete | Under Construction</p>
+            <p class="price">₹1.20 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/dk3.avif" alt="Gardenium">
+        <div class="details">
+            <h3>Gardenium</h3>
+            <p class="location">Salt Lake, Kolkata</p>
+            <p class="info">3 BHK | 6 Acres | 90% Complete | Ready to Move</p>
+            <p class="price">₹1.75 Cr Onwards</p>
+        </div>
+    </div>
+    
+    <!-- Row 2 -->
+    <div class="listing">
+        <img src="images/dtc1.jpeg" alt="Serene">
+        <div class="details">
+            <h3>Serene</h3>
+            <p class="location">New Town, Kolkata</p>
+            <p class="info">2, 3 BHK | 10 Acres | 80% Complete | Under Construction</p>
+            <p class="price">₹1.30 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/dtc2.jpeg" alt="Tranquil Heights">
+        <div class="details">
+            <h3>Tranquil Heights</h3>
+            <p class="location">Howrah, Kolkata</p>
+            <p class="info">3, 4 BHK | 9 Acres | 50% Complete | Under Construction</p>
+            <p class="price">₹1.60 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/dtc3.jpg" alt="Haven Residences">
+        <div class="details">
+            <h3>Haven Residences</h3>
+            <p class="location">Park Circus, Kolkata</p>
+            <p class="info">3, 5 BHK | 15 Acres | 60% Complete | Under Construction</p>
+            <p class="price">₹2.00 Cr Onwards</p>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+ <!-- Featured Properties Section -->
+ 
+ <h1 class="heading"><center><b>DTC Sojon</b></center></h1>
+ <br>
+<br>
+<br>
+<br>
+ <div class="container">
+    <!-- Row 1 -->
+    <div class="listing">
+        <img src="images/dcc1.jpeg" alt="Botanica">
+        <div class="details">
+            <h3>Botanica</h3>
+            <p class="location">Sonarpur, South Kolkata</p>
+            <p class="info">3, 4 BHK | 11 Acres | 55% Complete | Under Construction</p>
+            <p class="price">₹1.50 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/dcc2.jpg" alt="Aashirvaad">
+        <div class="details">
+            <h3>Aashirvaad</h3>
+            <p class="location">Rajarhat, Kolkata</p>
+            <p class="info">2, 3 BHK | 8 Acres | 70% Complete | Under Construction</p>
+            <p class="price">₹1.20 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/dcc3.jpeg" alt="Gardenium">
+        <div class="details">
+            <h3>Gardenium</h3>
+            <p class="location">Salt Lake, Kolkata</p>
+            <p class="info">3 BHK | 6 Acres | 90% Complete | Ready to Move</p>
+            <p class="price">₹1.75 Cr Onwards</p>
+        </div>
+    </div>
+    
+    <!-- Row 2 -->
+    <div class="listing">
+        <img src="images/dcc4.jpeg" alt="Serene">
+        <div class="details">
+            <h3>Serene</h3>
+            <p class="location">New Town, Kolkata</p>
+            <p class="info">2, 3 BHK | 10 Acres | 80% Complete | Under Construction</p>
+            <p class="price">₹1.30 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/dcc5.jpeg" alt="Tranquil Heights">
+        <div class="details">
+            <h3>Tranquil Heights</h3>
+            <p class="location">Howrah, Kolkata</p>
+            <p class="info">3, 4 BHK | 9 Acres | 50% Complete | Under Construction</p>
+            <p class="price">₹1.60 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/dcc6.jpg" alt="Haven Residences">
+        <div class="details">
+            <h3>Haven Residences</h3>
+            <p class="location">Park Circus, Kolkata</p>
+            <p class="info">3, 5 BHK | 15 Acres | 60% Complete | Under Construction</p>
+            <p class="price">₹2.00 Cr Onwards</p>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1 class="heading"><center><b>Dream World City</b></center></h1>
+<br>
+<br>
+<div class="map-container" style="width: 100%; max-width: 600px; margin: 20px auto; height: 400px;">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3688.1053061106845!2d88.30026057434854!3d22.42506193836344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027bcac65fecf5%3A0xe037cbd04e23419f!2sDream%20World%20City!5e0!3m2!1sen!2sin!4v1730467439038!5m2!1sen!2sin" 
+        style="width: 700px; height: 100%; border: 2;" 
+        allowfullscreen="" 
+        loading="fast"></iframe>
+</div>
+<br>
+<br>
+<h1 class="heading"><center><b>Dream World City</b></center></h1>
+<br>
+<br>
+<div class="map-container" style="width: 100%; max-width: 600px; margin: 20px auto; height: 400px;">
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3687.6468299253556!2d88.29288437434907!3d22.442314837734635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027bd7d8b74585%3A0x7305e1706435cada!2sDTC%20Sojon!5e0!3m2!1sen!2sin!4v1730467710035!5m2!1sen!2sin" width="700" height="100%" style="border:0;" allowfullscreen="" loading="fast" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+<style>
+  .about-section {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 15px;
+}
+
+.our-story {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-right: 20px;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #d3d3d3;
+}
+
+.tabs {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  font-size: 0.9rem;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  border-bottom: 2px solid transparent;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.tabs a.active, .tabs a:hover {
+  color: #333;
+  border-bottom: 2px solid #333;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.about-image {
+  width: 40%;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-section {
+  width: 60%;
+}
+
+.about-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.view-more {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.view-more:hover {
+  background-color: #555;
+}
+
+.more-text {
+  display: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-top: 10px;
+}
+
+.more-text.show {
+  display: block;
+}
+
+.more-text {
+  display: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.more-text.show {
+  display: block;
+  opacity: 1;
+  margin-bottom: 10px;
+}
+
+.text-section {
+  position: relative;
+  width: 100%;
+}
+
+.about-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.more-text {
+  display: none; /* Initially hidden */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-top: -5px; /* Adjust as needed for spacing */
+  padding-bottom: 10px;
+  opacity: 0;
+  transition: all 0.4s ease; /* Smooth fade-in effect */
+}
+
+.more-text.show {
+  display: block;
+  opacity: 1;
+}
+
+.view-more {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.view-more:hover {
+  background-color: #555;
+}
+</style>
+
+<h1 class="heading"><center><b>About Our Developer</b></center></h1>
+<br>
+<h1 class="heading"><center><b>Dream World City</b></center></h1>
+<br>
+<br>
+<div class="about-section">
+  <div class="header">
+    <h2 class="our-story">OUR STORY</h2>
+    <hr>
+  </div>
+  <div class="tabs">
+    <a href="#" class="active">ABOUT US</a>
+  </div>
+<div class="content">
+  <img src="images/203.jpeg" alt="Company Image" class="about-image">
+  <div class="text-section">
+  <h3 class="about-title">ABOUT THE COMPANY</h3>
+  <p class="description">The Jain Group is one of the most dynamic and admired organizations in the Real Estate, Hospitality, and Finance sectors in East India. More than three decades ago, the visionary Founder and CMD...</p>
+</div>
+</div>
+</div>
+<br>
+<br>
+  <h1 class="heading"><center><b>DTC Sojon</b></center></h1>
+  <br>
+  <br>
+  <div class="about-section">
+  <div class="header">
+    <h2 class="our-story">OUR STORY</h2>
+    <hr>
+  </div>
+  <div class="tabs">
+    <a href="#" class="active">ABOUT US</a>
+  </div>
+<div class="content">
+  <img src="images/203.jpeg" alt="Company Image" class="about-image">
+  <div class="text-section">
+  <h3 class="about-title">ABOUT THE COMPANY</h3>
+  <p class="description">The Jain Group is one of the most dynamic and admired organizations in the Real Estate, Hospitality, and Finance sectors in East India. More than three decades ago, the visionary Founder and CMD...</p>
+</div>
+</div>
+</div>
+
+</body>
+</html>
+

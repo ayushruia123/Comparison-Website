@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar with Hero Section</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Navbar Styles */
+    body {
+      background-image: url('images/background.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: #ffffff;
+      color: #000;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .navbar h1 {
+      font-size: 24px;
+      color: #000;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #000;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ff9800;
+    }
+
+    /* Hamburger Icon */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    /* Mobile Menu */
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%;
+      width: 50%;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+      padding-left: 20px;
+      gap: 15px;
+      transition: right 0.4s ease;
+      z-index: 1000;
+    }
+
+    .nav-menu.open {
+      right: 0;
+    }
+
+    .nav-menu .close-icon {
+      align-self: flex-end;
+      font-size: 24px;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* Hero Section */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-slide img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 5px solid gold;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-slide img:nth-child(1) { animation: slideShow 12s infinite 0s; }
+    .hero-slide img:nth-child(2) { animation: slideShow 12s infinite 4s; }
+    .hero-slide img:nth-child(3) { animation: slideShow 12s infinite 8s; }
+
+    @keyframes slideShow {
+      0%, 33.33% { opacity: 1; }
+      66.66%, 100% { opacity: 0; }
+    }
+
+    .hero-caption {
+      position: absolute;
+      bottom: 90px;
+      left: 30px;
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+      padding: 5px 10px;
+      border-left: 3px solid gold;
+    }
+
+    /* Featured Properties */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .listing {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 30%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease;
+      color: #000;
+    }
+
+    .listing:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .listing img {
+      width: 100%;
+      height: auto;
+    }
+
+    .details {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .details h3 {
+      margin: 10px 0;
+      font-size: 1.2rem;
+    }
+
+    .location, .info, .price {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .listing {
+        width: 100%;
+      }
+    }
+
+    .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    background-color: ;
+}
+
+.listing {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 30%; /* Each card will take 30% width */
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.listing img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.details {
+    padding: 15px;
+}
+
+.details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.details .location,
+.details .info,
+.details .price {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    color: #555;
+}
+
+.listing:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .listing {
+        width: 100%; /* Full width for mobile view */
+    }
+}
+
+.heading {
+  color: black;
+}
+
+    /* Centering the button */
+body {
+   
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+/* Button styling */
+.contact-button {
+    position: relative;
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: #2980b9;
+}
+
+/* Hidden mini-menu for contact number */
+.mini-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #2980b9;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show the mini-menu on hover */
+.contact-button:hover .mini-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.about-section {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 15px;
+}
+
+.our-story {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-right: 20px;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #d3d3d3;
+}
+
+.tabs {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  font-size: 0.9rem;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  border-bottom: 2px solid transparent;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.tabs a.active, .tabs a:hover {
+  color: #333;
+  border-bottom: 2px solid #333;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.about-image {
+  width: 40%;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-section {
+  width: 60%;
+}
+
+.about-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.view-more {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.view-more:hover {
+  background-color: #555;
+}
+
+.more-text {
+  display: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-top: 10px;
+}
+
+.more-text.show {
+  display: block;
+}
+
+.more-text {
+  display: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.more-text.show {
+  display: block;
+  opacity: 1;
+  margin-bottom: 10px;
+}
+
+.text-section {
+  position: relative;
+  width: 100%;
+}
+
+.about-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.more-text {
+  display: none; /* Initially hidden */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-top: -5px; /* Adjust as needed for spacing */
+  padding-bottom: 10px;
+  opacity: 0;
+  transition: all 0.4s ease; /* Smooth fade-in effect */
+}
+
+.more-text.show {
+  display: block;
+  opacity: 1;
+}
+
+.view-more {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.view-more:hover {
+  background-color: #555;
+}
+
+.team-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9f9;
+}
+
+.team-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    text-align: center;
+}
+
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+}
+
+.team-member p {
+    font-size: 1em;
+    color: #333;
+    margin: 5px 0;
+}
+
+.team-member p strong {
+    font-size: 2em;
+    color: #222;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .team-member {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-member {
+        width: 100%;
+    }
+}
+
+.about-section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-image {
+    width: 50%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.text-section {
+    width: 50%;
+}
+
+.description, .more-text {
+    margin: 10px 0;
+}
+
+.view-more {
+    margin-top: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column; /* Stack image and text vertically */
+        text-align: center;
+    }
+
+    .about-image {
+        width: 100%; /* Full width on mobile */
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .text-section {
+        width: 100%; /* Full width for text on mobile */
+    }
+}
+
+.faq-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.faq-bar {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: calc(33.33% - 10px);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-bar:hover {
+    background-color: #e2e6ea;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.faq-bar h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+}
+
+.faq-bar .answer {
+    font-size: 14px;
+    color: #555;
+    display: none;
+    margin-top: 10px;
+}
+
+.faq-bar.active .answer {
+    display: block;
+}
+
+.faq-bar.active h3 {
+    color: #007bff;
+}
+
+@media (max-width: 1024px) {
+    .faq-container {
+        gap: 10px;
+    }
+
+    .faq-bar {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-bar {
+        width: 100%;
+    }
+}
+
+.legacy {
+    text-align: center;
+    padding: 20px;
+}
+
+.legacy h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.legacy-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+    .legacy-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 787px) {
+    .legacy-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .stat img {
+        width: 60px;
+        height: 60px;
+    }
+    .legacy h1 {
+        font-size: 1.5rem;
+    }
+}
+
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1>Navbar Title</h1>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#project-configuration">Project Configuration</a>
+      <a href="#plans">Plans</a>
+
+      <div class="contact-button">
+    📞 +1-234-567-8900
+    <div class="mini-menu">
+        <a href="tel:+12345678900"></a>
+    </div>
+</div>
+
+
+
+    </div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <nav class="nav-menu" id="navMenu">
+      <div class="close-icon" id="closeIcon">&times;</div>
+      <a href="#overview">Overview</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#project-configuration">Project Configuration</a>
+      <a href="#plans">Plans</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <!-- Hero Section -->
+<div class="hero-container">
+  <div class="hero-slide">
+    <!-- Desktop/Laptop View -->
+    <img src="images/301.png" alt="Hero Image for Desktop" class="hero-desktop">
+    <img src="images/301.png" alt="Hero Image for Desktop" class="hero-desktop">
+    <img src="images/301.png" alt="Hero Image for Desktop" class="hero-desktop">
+    <div class="hero-slide">
+    <!-- Mobile View -->
+    <img src="images/300.png" alt="Hero Image for Mobile" class="hero-mobile">
+    <img src="images/300.png" alt="Hero Image for Mobile" class="hero-mobile">
+    <img src="images/300.png" alt="Hero Image for Mobile" class="hero-mobile">
+</div>
+    <div class="hero-caption">The Best Home for You And Your Family</div>
+  </div>
+</div>
+
+<!-- CSS -->
+<style>
+  /* Hide mobile image by default */
+  .hero-mobile {
+    display: none;
+  }
+
+  /* Show only the desktop hero image on screens wider than 768px */
+  @media (min-width: 768px) {
+    .hero-desktop {
+      display: block;
+    }
+    .hero-mobile {
+      display: none;
+    }
+    .hero-caption {
+      display: none;
+    }
+  }
+
+  /* Show only the mobile hero image on screens smaller than 768px */
+  @media (max-width: 767px) {
+    .hero-desktop {
+      display: none;
+    }
+    .hero-mobile {
+      display: block;
+    }
+    .hero-caption {
+      display: none;
+    }
+  }
+  
+  /* General styling for hero section */
+  .hero-container {
+    position: relative;
+  }
+  
+  .hero-slide img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-size: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+  }
+</style>
+
+<br>
+<br>
+  <!-- Featured Properties Section -->
+ <h1 class="heading"><center><b>Featured Properties</b></center></h1>
+ <div class="container">
+    <!-- Row 1 -->
+    <div class="listing">
+        <img src="images/2.jpeg" alt="Botanica">
+        <div class="details">
+            <h3>Botanica</h3>
+            <p class="location">Sonarpur, South Kolkata</p>
+            <p class="info">3, 4 BHK | 11 Acres | 55% Complete | Under Construction</p>
+            <p class="price">₹1.50 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/3.jpeg" alt="Aashirvaad">
+        <div class="details">
+            <h3>Aashirvaad</h3>
+            <p class="location">Rajarhat, Kolkata</p>
+            <p class="info">2, 3 BHK | 8 Acres | 70% Complete | Under Construction</p>
+            <p class="price">₹1.20 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/4.jpeg" alt="Gardenium">
+        <div class="details">
+            <h3>Gardenium</h3>
+            <p class="location">Salt Lake, Kolkata</p>
+            <p class="info">3 BHK | 6 Acres | 90% Complete | Ready to Move</p>
+            <p class="price">₹1.75 Cr Onwards</p>
+        </div>
+    </div>
+    
+    <!-- Row 2 -->
+    <div class="listing">
+        <img src="images/5.jpeg" alt="Serene">
+        <div class="details">
+            <h3>Serene</h3>
+            <p class="location">New Town, Kolkata</p>
+            <p class="info">2, 3 BHK | 10 Acres | 80% Complete | Under Construction</p>
+            <p class="price">₹1.30 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/6.jpeg" alt="Tranquil Heights">
+        <div class="details">
+            <h3>Tranquil Heights</h3>
+            <p class="location">Howrah, Kolkata</p>
+            <p class="info">3, 4 BHK | 9 Acres | 50% Complete | Under Construction</p>
+            <p class="price">₹1.60 Cr Onwards</p>
+        </div>
+    </div>
+    <div class="listing">
+        <img src="images/7.jpeg" alt="Haven Residences">
+        <div class="details">
+            <h3>Haven Residences</h3>
+            <p class="location">Park Circus, Kolkata</p>
+            <p class="info">3, 5 BHK | 15 Acres | 60% Complete | Under Construction</p>
+            <p class="price">₹2.00 Cr Onwards</p>
+        </div>
+    </div>
+</div>
+
+  <center><button class="view-more">Know More</button></center>
+
+<div class="about-section">
+  <div class="header">
+    <h2 class="our-story">OUR STORY</h2>
+    <hr>
+  </div>
+  <div class="tabs">
+    <a href="#" class="active">ABOUT US</a>
+  </div>
+<div class="content">
+  <img src="images/203.jpeg" alt="Company Image" class="about-image">
+  <div class="text-section">
+  <h3 class="about-title">ABOUT THE COMPANY</h3>
+  <p class="description">The Jain Group is one of the most dynamic and admired organizations in the Real Estate, Hospitality, and Finance sectors in East India. More than three decades ago, the visionary Founder and CMD...</p>
+  
+  <!-- Extra paragraph placed above the button -->
+  <p id="more-text" class="more-text">This expanded section contains additional details about the company, its journey, vision, and accomplishments.</p>
+  
+  
+  <button onclick="toggleParagraph()" class="view-more">Know More</button>
+
+</div>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
+
+<div class="team-section">
+    <h2>Home Buying Consultants</h2>
+    <div class="team-container">
+        <div class="team-member">
+            <div class="circle" style="background-image: url('images/301.jpg');"></div>
+            <p><strong>Rahul Singh</strong></p>
+            <p><b>18+</b> Years Of Experience </p>
+            <p><b>1000+</b> Families Guided To Their Homes</p>
+        </div>
+        <div class="team-member">
+            <div class="circle" style="background-image: url('images/201.jpeg');"></div>
+            <p><strong>Name 2</strong></p>
+            <p>Role 2</p>
+            <p>Short description or details about the team member.</p>
+        </div>
+        <div class="team-member">
+            <div class="circle" style="background-image: url('images/202.jpeg');"></div>
+            <p><strong>Name 3</strong></p>
+            <p>Role 3</p>
+            <p>Short description or details about the team member.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="testimonials-container">
+  <h2 class="testimonials-title">What Our Customers Say</h2>
+
+  <div class="testimonials">
+    <div class="testimonial">
+      <div class="testimonial-content">
+        <p class="testimonial-text">"This product exceeded my expectations! The quality and service were amazing. I would highly recommend it to anyone."</p>
+        <p class="testimonial-author">- John Doe</p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-content">
+        <p class="testimonial-text">"Excellent customer support and a fantastic product! It really made a difference in our daily operations."</p>
+        <p class="testimonial-author">- Jane Smith</p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-content">
+        <p class="testimonial-text">"I’ve never had such a great experience with any company before. The attention to detail is unmatched."</p>
+        <p class="testimonial-author">- Michael Johnson</p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-content">
+        <p class="testimonial-text">"A truly exceptional experience. The team was professional and attentive every step of the way."</p>
+        <p class="testimonial-author">- Sarah Lee</p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-content">
+        <p class="testimonial-text">"The quality of the product speaks for itself. I couldn't be happier with my purchase!"</p>
+        <p class="testimonial-author">- Chris Evans</p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-content">
+        <p class="testimonial-text">"Outstanding service and attention to detail. I will definitely be coming back!"</p>
+        <p class="testimonial-author">- Emma Watson</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Container Styling */
+  .testimonials-container {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Title Styling */
+  .testimonials-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: 'Georgia', serif;
+    letter-spacing: 1px;
+    color: #2c3e50;
+    text-transform: uppercase;
+  }
+
+  /* Grid Layout */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+    gap: 20px;
+  }
+
+  /* Responsive Grid for Mobile */
+  @media (max-width: 768px) {
+    .testimonials {
+      grid-template-columns: 1fr; /* 1 column on smaller screens */
+    }
+  }
+
+  /* Testimonial Box Styling */
+  .testimonial {
+    background-color: #f4f7f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Hover Effect */
+  .testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background-color: #eaf2f8;
+  }
+
+  /* Testimonial Content */
+  .testimonial-content {
+    text-align: left;
+  }
+
+  /* Testimonial Text */
+  .testimonial-text {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  /* Testimonial Author */
+  .testimonial-author {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+  }
+
+  /* Additional Styling for Text & Color */
+  .testimonial-text,
+  .testimonial-author {
+    transition: color 0.3s ease;
+  }
+
+  /* Text Color Hover Effect */
+  .testimonial:hover .testimonial-text {
+    color: #2c3e50;
+  }
+
+  .testimonial:hover .testimonial-author {
+    color: #2980b9;
+  }
+
+  .heading {
+    color: black;
+    font-family: Playfair Display;
+  }
+</style>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h1 class="heading"><center><b>FAQs</b></center></h1>
+
+<div class="faq-container">
+    <!-- FAQ 1 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>What is the process of buying a home?</h3>
+        <p class="answer">The home-buying process starts with getting pre-approved for a mortgage, searching for homes, making an offer, inspections, and finally closing.</p>
+    </div>
+    <!-- FAQ 2 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>How do I determine my budget for buying a home?</h3>
+        <p class="answer">Consider your income, savings, monthly expenses, down payment, closing costs, and ongoing costs to set your budget.</p>
+    </div>
+    <!-- FAQ 3 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>What are the current market conditions?</h3>
+        <p class="answer">Market conditions can be either a buyer's or seller's market, influencing prices and competition. Realtors can guide you on current trends.</p>
+    </div>
+    <!-- FAQ 4 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>How long does it typically take to sell a home?</h3>
+        <p class="answer">Selling a home usually takes weeks to months, depending on factors like location, pricing, and market demand.</p>
+    </div>
+    <!-- FAQ 5 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>What factors can affect the selling price of my home?</h3>
+        <p class="answer">The selling price depends on location, property condition, and market trends. Upgrades or renovations may increase value.</p>
+    </div>
+    <!-- FAQ 6 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>What should I look for when viewing a property?</h3>
+        <p class="answer">Check the layout, condition, and potential repairs. Consider proximity to schools, parks, and public transportation.</p>
+    </div>
+    <!-- FAQ 7 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>What is the role of a realtor in the buying/selling process?</h3>
+        <p class="answer">A realtor provides guidance, pricing, marketing, negotiation, and paperwork assistance, making the process smoother.</p>
+    </div>
+    <!-- FAQ 8 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>Are there any hidden costs associated with buying a home?</h3>
+        <p class="answer">Yes, additional costs include closing costs, inspections, property taxes, insurance, and ongoing maintenance.</p>
+    </div>
+    <!-- FAQ 9 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>How can I prepare my home for sale?</h3>
+        <p class="answer">Prepare by decluttering, cleaning, and making necessary repairs. Staging can also improve appeal for potential buyers.</p>
+    </div>
+    <!-- FAQ 10 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>What are contingencies in a real estate contract?</h3>
+        <p class="answer">Contingencies are conditions that must be met to proceed with the sale, such as inspections, appraisals, and financing.</p>
+    </div>
+    <!-- FAQ 11 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>How can I make my offer more attractive to sellers?</h3>
+        <p class="answer">Offering a competitive price, fewer contingencies, or a larger deposit can make your offer stand out.</p>
+    </div>
+    <!-- FAQ 12 -->
+    <div class="faq-bar" onclick="toggleAnswer(this)">
+        <h3>What happens if my home doesn’t sell?</h3>
+        <p class="answer">If your home doesn't sell, consider adjusting the price or marketing strategy. Your realtor can guide you on alternatives.</p>
+    </div>
+</div>
+
+<script>
+  function toggleAnswer(element) {
+    element.classList.toggle('active');
+}
+
+</script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<section class="legacy">
+        <h1>Our Legacy</h1>
+        <div class="legacy-stats">
+            <div class="stat">
+                <img class="icon" width="100" height="100" src="images/building.webp" alt="skyscrapers" />
+                <p><strong>7</strong><br>Million sq.ft. Developed</p>
+            </div>
+            <div class="stat">
+                <img class="icon" width="100" height="100" src="images/construction.webp" alt="constructing" />
+                <p><strong>20</strong><br>Million sq.ft. under Planning and Development</p>
+            </div>
+            <div class="stat">
+                <img class="icon" width="100" height="100" src="images/happy customer.webp" alt="batch-assign" />
+                <p><strong>7000</strong><br>Happy Customers</p>
+            </div>
+            <div class="stat">
+                <img class="icon" width="100" height="100" src="images/trophy.webp" alt="trophy" />
+                <p><strong>40+</strong><br>Industry Awards and Recognitions</p>
+            </div>
+            <div class="stat">
+                <img class="icon" width="100" height="100" src="images/reputation.webp" alt="handshake-heart" />
+                <p>Reputed Name in Real Estate, Hospitality & Finance Sectors</p>
+            </div>
+            <div class="stat">
+                <img class="custom-icon" width="100" height="100" src="images/key.webp" alt="giving" />
+                <p>Over 2 Decades of Delivering Excellence</p>
+            </div>
+            <div class="stat">
+                <img class="icon" width="100" height="100" src="images/family.webp" alt="family--v1" />
+                <p><strong>7000+</strong><br>Happy Families</p>
+            </div>
+            <div class="stat">
+                <img class="icon" width="100" height="100" src="images/building quality.webp" alt="best-seller" />
+                <p>Known for Our Commitment to Quality</p>
+            </div>
+        </div>
+    </section>
+
+<style>
+    .legacy {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f8f8f8;
+}
+
+.legacy h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 38px;
+  margin-bottom: 40px;
+  color: #000000;
+  /* font-family: "Roboto",sans-serif; */
+}
+
+.legacy-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  font-family: "Jost", sans-serif;
+}
+
+.stat {
+  max-width: 25%;
+  text-align: center;
+  flex: 1 1 calc(25% - 40px);
+  /* For desktop */
+}
+
+.stat img {
+  /* width: 100px;
+  height: 100px; */
+  margin-bottom: 20px;
+}
+
+.stat p {
+  font-size: 18px;
+  line-height: 1.4;
+  color: #555;
+}
+
+.stat strong {
+  font-size: 24px;
+  color: #000;
+}
+
+@keyframes fadeInMoveUp {
+  from {
+    opacity: 0;
+    transform: translateY(120px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat.hidden {
+  opacity: 0;
+  transform: translateY(120px);
+}
+
+.stat.visible {
+  animation: fadeInMoveUp 2.5s forwards;
+}
+
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const legacySection = document.querySelector('.legacy');
+    const stats = document.querySelectorAll('.stat');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                stats.forEach((stat, index) => {
+                    setTimeout(() => {
+                        stat.classList.add('visible');
+                        stat.classList.remove('hidden');
+                    }, index * 200); // Increase the delay to 300ms
+                });
+                observer.unobserve(legacySection); // Stop observing after the first trigger
+            }
+        });
+    }, observerOptions);
+
+    stats.forEach(stat => {
+        stat.classList.add('hidden');
+    });
+
+    observer.observe(legacySection);
+});
+</script>
+
+
+  <script>
+    // Toggle mobile menu
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+    const closeIcon = document.getElementById("closeIcon");
+
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+    });
+
+    closeIcon.addEventListener("click", () => {
+      navMenu.classList.remove("open");
+    });
+
+
+    function toggleParagraph() {
+  const moreText = document.getElementById("more-text");
+  moreText.classList.toggle("show");
+}
+
+  </script>
+
+   
+
+
+</body>
+</html>
